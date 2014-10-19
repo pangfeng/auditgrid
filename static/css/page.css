@@ -1,0 +1,139 @@
+/* base */
+html,body,div,td,input,span,b{font-size: 13px;font-family: "微软雅黑";}
+.layout-container{position: absolute;width:100%;top:0;bottom:0;}
+.layout-container>div{position:absolute;width:100%;border:1px solid #ccc;}
+.layout-head{height:30px;top:0;}
+.layout-main{top:30px;bottom:20px;}
+.layout-foot{height:20px;bottom:0;}
+td,th,input[type=radio]{cursor: pointer;}
+tbody>tr:hover{background: #f9f9f9;}
+th:hover,td:hover{text-decoration:underline;}
+textarea {resize: none;}
+
+
+
+/* page */
+
+.layout-panel{
+	position:absolute;
+	top:40px;
+	bottom:20px;
+	left:0;
+	right:0;
+	border: 1px solid #ccc;
+	overflow: auto;
+}
+
+.textarea-box{
+	width:80%;
+}
+
+.selected-value-panel>div{
+	margin: 4px;
+}
+
+.selected-value-panel input[type=text]{
+	width: 5em;
+}
+
+.cleckbox-item{
+	margin:5px;
+	cursor:pointer;
+	padding: 3px 6px;
+	border-radius:10px ;
+	background: #eee;	
+}
+
+.edit-panel-topbar{
+	height:3em;
+	line-height:3.1em;
+	text-align: center;
+	font-size: 14px ;
+	letter-spacing:1px;
+	border-bottom: 1px solid #ddd;
+	background: #f6f6f6;
+	color:#666;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+ 	overflow:hidden; 	
+	padding: 0 1em;
+}
+
+.type-name{
+	font-weight: 100;
+	color:#eee;
+}
+
+#template_grid th,#plan_grid th,#audit_grid th{
+	border:none;
+	background:#666 ;
+	color:#fff;
+	font-weight:100 ;
+	font-size:14px;
+	letter-spacing:5px;
+	padding-left:30px;
+	padding-right:30px;
+	text-align: center;
+}
+
+#template_grid td,#plan_grid td,#audit_grid td{
+	text-align: center;
+}
+#template_grid th.title,#plan_grid th.title,#audit_grid th.title{
+	padding-left:100px;
+	padding-right:100px;
+}
+#template_grid td.title,#plan_grid td.title,#audit_grid td.title{
+	text-indent: 1em;
+	text-align: left;
+	font-weight: bold;
+	border-left: 12px solid #ddd;
+}
+#top-panel{
+	top:0;
+	height:40px;
+	line-height:40px;
+	text-indent: 30px;
+	background:#666;
+	color:#fff;
+	border: 0;
+}
+
+#main-panel{
+	right:0;
+	left:239px;
+	border: 0;
+}
+#right-panel{
+	width:220px;
+	right:-219px;
+	left: auto;
+	overflow: hidden;
+}
+#left-panel{
+	width:240px;
+	left: 0;
+	overflow: hidden;
+}
+#bottom-panel{
+	top:auto;
+	bottom:0;
+	height:21px;
+	background:#ccc ;
+}
+#toolbar{
+	position: absolute;
+	width:100%;
+	height:200px;
+	bottom:0;
+	padding:1em;
+	background: #D9E8FB;
+}
+
+#grid-topbar{
+	height:35px;
+	line-height:37px;
+	text-indent: 2em;
+	background: #fdfdfd;
+	color:#333;
+}

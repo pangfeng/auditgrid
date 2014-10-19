@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />	
+	<title>Template Grid</title>
+	<link rel="stylesheet" href="static/css/backgrid.css" />
+	<link rel="stylesheet" href="static/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="static/css/bootstrap-dialog.min.css" />
+	<link rel="stylesheet" href="static/css/page.css" />
+</head>
+<body>
+	<div id="top-panel" class='layout-panel'>		
+		（此行用于开发调试）<b id='grid-name' style='font-size: 14px;'></b>&nbsp;&nbsp;
+		<a onclick='addGrid()' href='javascript:void(0)' style='color:#fff;text-decoration: underline;'>Add Grid</a>
+		&nbsp;&nbsp;
+		<a onclick='addItem()' href='javascript:void(0)' style='color:#fff;text-decoration: underline;'>Add Row</a>
+		&nbsp;&nbsp;
+		<a onclick='listAllTemplates()' href='javascript:void(0)' style='color:#fff;text-decoration: underline;'>List All</a>
+		&nbsp;&nbsp;
+	</div>
+	<div id="main-panel" class='layout-panel'></div>
+	<div id="right-panel" class='layout-panel'></div>
+	<div id="left-panel" class='layout-panel'></div>
+	<div id="bottom-panel" class='layout-panel'></div>	
+	<script src='static/js/AuditStarGridLibrary.js'></script>
+	<script>
+		var tGrid = new app.TemplateGrid({
+			el:$('#main-panel'),
+			editPanelEl: $("#right-panel")
+		});
+		tGrid.render(1);
+		function addGrid(){
+			tGrid.render();
+		}
+		function addItem(){
+			tGrid.add();
+		}
+		function listAllTemplates(){
+			BootstrapDialog.show({
+	            title: '选择需要的列',
+	            message: function(dialogRef){
+	            	var htmlContent = $("<div></div>");
+	            	for(var i in localStorage){
+	            		if(i.indexOf('template_grid_')===0){
+	            			var json = $.parseJSON(localStorage[i]);
+	            			id = Number(i.replace('template_grid_',''));
+	            			(function(id){
+		            			htmlContent.append(
+		            				$('<a href="javascript:void(0)">'+json.name+'</a><br/>').click(function(){
+		            					tGrid.render(id);
+	                					dialogRef.close();
+		            				})
+	            				);
+	            			}(id));
+	            		}
+	            	}
+	            	return htmlContent;
+	            },
+	            buttons: [{
+	                label: 'close',
+	                action: function(dialogRef) {
+	                	dialogRef.close();
+	                }
+	            }]
+	        });
+		}
+	</script>
+</body>
+</html>
+
