@@ -1,0 +1,46 @@
+<script id='select-edit-panel' type='text/template'>
+<label><input type='radio' name='measure-radio' value='qualitative'/>定性的</label>
+<br />
+<div class='selected-value-panel' id='qualitative-values' style='display:none'>
+	<div class="input-group input-group-sm">
+	  <span class="input-group-addon">参数1</span>
+	  <input type="text" class="form-control" value='高'/>
+	</div>
+	<div class="input-group input-group-sm">
+	  <span class="input-group-addon">参数2</span>
+	  <input type="text" class="form-control" value='中'/>
+	</div>
+	<div class="input-group input-group-sm">
+	  <span class="input-group-addon">参数3</span>
+	  <input type="text" class="form-control" value='低'/>
+	</div>
+</div>
+<label><input type='radio' name='measure-radio' value='quantitative'/>定量的</label>
+<div class='selected-value-panel' id='quantitative-values' style='display:none'>
+	<div class="input-group input-group-sm">
+	  <span class="input-group-addon">最大值</span>
+	  <input type="text" class="form-control" id='max' value='10'/>
+	</div>
+	<div class="input-group input-group-sm">
+	  <span class="input-group-addon">最小值</span>
+	  <input type="text" class="form-control" id='min' value='2'/>
+	</div>
+	<div class="input-group input-group-sm">
+	  <span class="input-group-addon">间隔值</span>
+	  <input type="text" class="form-control" id='step-size' value='2'/>
+	</div>
+</div>
+<br />
+<label><input type='radio' name='measure-radio' value='none'/>不区分</label>
+</script>
+
+<script id='applicability-edit-panel' type='text/template'>
+<label>
+	<input type='radio' name='applicability-radio' value='all'/>
+	<span>所有选项都适用，不需要预先判断适用性</span>
+</label>
+<br />
+<label><input type='radio' name='applicability-radio' value='byset'/>
+	<span>需要预先判断适用性</span>
+</label>
+</script>
