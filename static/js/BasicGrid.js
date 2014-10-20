@@ -182,6 +182,16 @@ window.app.BasicGrid = Backbone.View.extend({
 		this.save().render(this.id);
 	},
 	
+	//从startIndex行开始连续的num行向下移动step行
+	move: function(startIndex, num, step){
+		var models = this.collection.models, rows = models.splice(startIndex, num);
+		var args = rows;
+		args.unshift(0);
+		args.unshift(startIndex+step);
+		Array.prototype.splice.apply(models, args);
+		this.save().render(this.id);
+	},
+	
 	save: function(){
 		if(this.data){
 			this.data.items = this.collection.toJSON(); 
