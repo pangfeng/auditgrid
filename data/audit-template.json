@@ -101,6 +101,18 @@
 		},
 		{
 			"type":"section",
+			"level":3,
+			"title":"section-1.3.4",
+			"clause":"根据《中华人民共和国》**法规第*条第*款，禁止排放污染气体！",
+			"gudeline": "指南指南指南指南指南",
+			"applicability":"需判断",
+			"weight":"不区分",
+			"evidence": "",
+			"conclusion":"",
+			"furtheraction":""
+		},
+		{
+			"type":"section",
 			"level":2,
 			"title":"section-1.4",
 			"clause":"根据《中华人民共和国》**法规第*条第*款，禁止排放污染气体！",

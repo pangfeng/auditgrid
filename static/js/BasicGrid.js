@@ -163,33 +163,100 @@ window.app.BasicGrid = Backbone.View.extend({
 		this.collection.models.splice(index,1);
 		this.save().render(this.id);
 	},
-	
+		
 	moveUp: function(index){
-		if(index==0 || index>this.collection.length-1){
+		if(index <= 0 || index > this.collection.length-1){
 			return;
 		}
-		var models = this.collection.models, previous = models[index-1], self= models[index];
-		models.splice(index-1, 2, self, previous);
-		this.save().render(this.id);
+		var num = 0,
+			step = 0,
+			models = this.collection.models,
+			cur= models[index],
+			prev= models[index-1],
+			type = cur.get('type'),
+			level = cur.get('level');
+		
+		if(type==='item'){
+			num = 1;	
+		}else if(type === 'section'){
+			num = this.getDescendantNumber(index)+1;
+		}
+		
+		if(prev.get('level')<level){
+			return;
+		}
+		
+		for(var i = index-1;i>=0;i--){
+			if(models[i].get('level')===level){
+				step = i - index;
+				break;
+			}
+		}
+		this.move(index, num, step);
 	},
 	
 	moveDown: function(index){
-		if(index==this.collection.length-1 || index>this.collection.length-2){
+		if(index < 0 || index > this.collection.length-2){
 			return;
 		}
-		var models = this.collection.models, next = models[index+1], self= models[index];
-		models.splice(index, 2, next, self);
-		this.save().render(this.id);
+		var num = 0,
+			step = 0,
+			models = this.collection.models,
+			cur= models[index]
+			type = cur.get('type'),
+			level = cur.get('level');
+		
+		if(type==='item'){
+			var next = models[index +1];
+			if(next.get('level') === level){
+				if(next.get('type') === 'item'){
+					this.move(index, 1, 1);
+				}else if(next.get('type') === 'section'){
+					var step = this.getDescendantNumber(index + 1)+1;
+					this.move(index, 1, step);
+				}
+			}
+		}else if(type === 'section'){
+			var num = this.getDescendantNumber(index)+1;
+			var step = this.getDescendantNumber(index + num)+1;
+			this.move(index, num, step);
+		}
 	},
 	
 	//从startIndex行开始连续的num行向下移动step行
 	move: function(startIndex, num, step){
+		if(num === 0 || step === 0){
+			return;
+		}
 		var models = this.collection.models, rows = models.splice(startIndex, num);
 		var args = rows;
 		args.unshift(0);
 		args.unshift(startIndex+step);
 		Array.prototype.splice.apply(models, args);
 		this.save().render(this.id);
+	},
+	
+	//get the number of descendants
+	getDescendantNumber:function(index){
+		var models = this.collection.models, 
+			cur = models[index], 
+			type = cur.get('type'),
+			level = cur.get('level'),
+			length = models.length,
+			num=0;
+		if(type === 'item' || index > length-2){
+			return num;
+		}
+			
+		for(var i=index+1,l = length;i<l;i++){
+			var next = models[i];
+			if(next.get('level')>level){
+				num ++;
+			}else{
+				break;
+			}
+		}
+		return num;
 	},
 	
 	save: function(){
