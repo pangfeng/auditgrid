@@ -3,9 +3,7 @@
 	"id":"1",
 	"name": "化工厂污染气体排放",
 	"columns":{
-		"type":"item",
-			"level":2,
-			"title": {"cellType":"string","metadata":""},
+		"title": {"cellType":"string","metadata":""},
 		"clause":{"cellType":"string","metadata":""},
 		"gudeline": {"cellType":"string","metadata":""},
 		"applicability":{"cellType":"string","metadata":"byset"},
