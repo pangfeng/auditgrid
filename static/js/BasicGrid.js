@@ -259,6 +259,10 @@ window.app.BasicGrid = Backbone.View.extend({
 		return num;
 	},
 	
+	setTitleAt: function(index, title){
+		this.collection.models[index].set('title',title);
+	},
+	
 	save: function(){
 		if(this.data){
 			this.data.items = this.collection.toJSON(); 
